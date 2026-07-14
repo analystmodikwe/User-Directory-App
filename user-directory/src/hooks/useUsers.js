@@ -20,7 +20,46 @@ export function useUsers() {
         // Flag used to avoid updating state if the component unmounts mid-fetch
         let isCancelled = false;
 
-       
-    })
+        async function fetchUsers() {
+            try {
+                // mark as loading before the request starts
+                setIsLoading(true); 
 
+                // the actual network call
+                const response = await fetch(USERS_ENDPOINT); 
+
+                // check response.ok and throw if it's a bad status
+                if (!response.ok) {
+                    throw new Error (`Request failed with status ${response.status}`)
+                }
+
+                // parrsing the JSON body
+                const data = await response.json();
+
+                // store the users and clear previous error
+                if (!isCancelled) {
+                    setUsers(data);
+                    setError(null);
+                }
+            } catch (err) {
+                if (!isCancelled) {
+                    setError(err.message || "Failed to fetch users.");
+                }
+            }finally {
+                if (!isCancelled) {
+                    setIsLoading(false);
+                }
+            }
+        }  
+
+        fetchUsers();
+        // the cleanup function that will run if the component unmounts before the fetch resolves.
+        return() => {
+            isCancelled = true;
+        };
+
+        // an empty array that will run once not on every re-render
+    }, []);
+
+    return{ users, isLoading, error };
 }
