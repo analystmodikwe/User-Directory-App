@@ -21,15 +21,15 @@ export default function App() {
   }, [users, searchTerm]);
 
   return (
-    <main className="">
-      <h1>User Directory</h1>
+    <main className="max-w-2xl mx-auto px-6 py-10">
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">User Directory</h1>
 
       {/* Passing state DOWN as a value, and a setter function DOWN as a callback.
        */}
       <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
-      {isLoading && <p className="">Loading users...</p>}
-      {error && <p className="">Error: {error}</p>}
+      {isLoading && <p className="text-gray-500">Loading users...</p>}
+      {error && <p className="text-red-600">Error: {error}</p>}
 
       {/* Only render the list once loading is done and there's no error */}
       {!isLoading && !error && <UserList users={filteredUsers} />}
