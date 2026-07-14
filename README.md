@@ -52,6 +52,9 @@ npm run build     # production build, output to /dist
 npm run preview   # preview the production build locally
 ```
 
+Vercel link
+https://user-directory-app-ebon.vercel.app/
+
 ## Styling notes
 
 All styling is done with Tailwind utility classes directly in JSX
