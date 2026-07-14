@@ -2,10 +2,10 @@
 export default function SearchBar({ value, onChange }) {
   return (
     <input
-    
-      type="text"
 
-      className="search-bar"
+      className=""
+
+      type="text"
 
       placeholder="Search users by name..."
 
