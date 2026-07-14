@@ -63,10 +63,10 @@ The page background is set on the `<body>` tag in `index.html`, not on
 content is on the page:
 
 ```html
-<body class="bg-sky-500/60">
+<body class="bg-grey-400">
 ```
 
-`bg-sky-500/60` is Tailwind's `sky-500` blue at 60% opacity. To change it,
+`bg-grey-400` is Tailwind's `sky-500` blue at 60% opacity. To change it,
 swap the class for any other `bg-{color}-{shade}` value (optionally with a
 `/{opacity}` suffix), for example `bg-gray-100` or `bg-slate-50`.
 
