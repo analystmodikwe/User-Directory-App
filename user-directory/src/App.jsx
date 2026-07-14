@@ -1,13 +1,10 @@
-
-
 import { useMemo, useState } from "react";
 import { useUsers } from "./hooks/useUsers.js";
 import SearchBar from "./components/SearchBar.jsx";
 import UserList from "./components/UserList.jsx";
 
 export default function App() {
-
-  // Get data + loading/error state from the custom hook 
+  // Get data + loading/error state from the custom hook
   const { users, isLoading, error } = useUsers();
 
   // This state lives HERE, in the parent — not inside SearchBar.
@@ -20,9 +17,7 @@ export default function App() {
     const query = searchTerm.trim().toLowerCase();
     if (!query) return users;
 
-    return users.filter((user) =>
-      user.name.toLowerCase().includes(query)
-    );
+    return users.filter((user) => user.name.toLowerCase().includes(query));
   }, [users, searchTerm]);
 
   return (
@@ -30,7 +25,7 @@ export default function App() {
       <h1>User Directory</h1>
 
       {/* Passing state DOWN as a value, and a setter function DOWN as a callback.
-           */}
+       */}
       <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
       {isLoading && <p className="">Loading users...</p>}
@@ -40,5 +35,4 @@ export default function App() {
       {!isLoading && !error && <UserList users={filteredUsers} />}
     </main>
   );
- 
 }
